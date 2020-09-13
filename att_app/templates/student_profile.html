@@ -1,0 +1,212 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student Profile</title>
+
+    <link rel="shortcut icon" href='{% static "assets/images/fav.jpg" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/fontawsom-all.min.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "assets/css/style.css" %}' />
+</head>
+
+<body>
+    <div class="container-fluid overcover">
+        <div class="container profile-box">
+            <div class="top-cover">
+                <div class="covwe-inn">
+                    <div class="row no-margin">
+                        <div class="col-md-3 img-c">
+                            <img src='{% static "assets/images/profile.jpg" %}' alt="">
+                        </div>
+                        <div class="col-md-9 tit-det">
+                            {% for x in student %}
+                            <h2>{{x.name}}</h2>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a></a>
+                </li>
+                <li class="nav-item">
+                    <a></a>              
+                </li>
+                <li class="nav-item">
+                        <a></a>               
+                </li>
+                <li class="nav-item">
+                        <a></a>                
+                </li>
+                <li class="nav-item">
+                        <a></a> 
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="row no-margin home-det">
+                      <div class="col-md-4 big-img">
+                         
+                         <h4 class="ltitle">Subjects</h4>
+                        <ul class="hoby row no-margin">
+                                {% for x in subject %}
+
+                                    <li><i class=""></i> <br>{{x.name}}</li>
+
+                                {% endfor %}
+                                       
+                                {% for x in lab %}
+
+                                    <li><i class=""></i> <br>{{x.name}}</li>        
+                                    
+                                {% endfor %}
+   
+                            
+                        </ul>
+                          <h4 class="ltitle">Office</h4>
+
+                        <div class="refer-cov">
+                            
+                            
+                            <p> <b>Mr. Dubey</b> Registrar</p>
+                            <span>Phone : +00 890 1232 8767</span>
+                        </div>
+                        <div class="refer-cov">
+                           
+                            <p><b>Mr. Agrawal</b> Fee Counter</p>
+                            <span>Phone :  +00 890 1232 8767</span>
+                        </div>
+                        
+                      </div>
+                      <div class="col-md-8 home-dat">
+                          <h2 class="rit-titl"> Total Attendance percentage</h2>
+                        <div class="profess-cover row no-margin" style="width: 110%;">
+                            <div class="col-md-6">
+                                <div class=" prog-row row">
+                                    <div class="col-sm-6">
+                                        {{percentage}}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: {{percentageI}}% ; background: #18d26e;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            
+
+                            <div class="links">
+                            <div class="row ">
+                              <div class="col-xl-6 col-md-12">
+                                  <ul class="btn-link">
+                                      <li>
+                                          <a><i class="fas fa-paper-plane"></i> Today's Status</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="jumbo-address">
+                         <div class="row no-margin">
+                                  <div class="col-lg-6 no-padding">
+
+                                  <table class="addrss-list">       
+                                    {% for x in timetable %}
+                                        
+                                        <tbody><tr>
+                                          <th>{{x.lec1}}</th>
+                                         
+                                      </tr>
+                                      <tr>
+                                            <th>{{x.lec2}}</th>
+                                  
+                                      </tr>
+                                      <tr>
+                                            <th>{{x.lec3}}</th>
+                                 
+                                      </tr>
+                                      <tr>
+                                            <th>{{x.lec4}}</th>
+                                        
+                                        </tr>
+                                        <tr>
+                                            <th>{{x.lec5}}</th>
+                                       
+                                        </tr>
+                                        <tr>
+                                            <th>{{x.lec6}}</th>
+                                       
+                                        </tr>
+                                        <tr>
+                                            <th>{{x.lec7}}</th>
+                                          
+                                        </tr>
+                                    {% endfor %}
+      
+     
+                                </table>
+                   
+                            </div>
+                            <div class="col-lg-6 no-padding">
+                                <table class="addrss-list" style="margin-bottom: 20px">  
+                                    {% for x in att %}                        
+                                        <tbody><tr>
+                                            
+                                            <td>{{x.lec1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec2}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec3}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec4}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec5}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec6}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{x.lec7}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    {% endfor %}    
+                               
+                                </table>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 no-padding">
+                               
+                          </div>
+                         </div>
+
+                      </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src='{% static "assets/js/jquery-3.2.1.min.js" %}'></script>
+<script src='{% static "assets/js/popper.min.js" %}'></script>
+<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+<script src='{% static "assets/js/script.js" %}'></script>
+
+
+</html>
+

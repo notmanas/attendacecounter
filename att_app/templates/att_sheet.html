@@ -1,0 +1,211 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Attendance Sheet</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel = 'stylesheet' href ='{% static "css/style.css" %}'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <style>
+        
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 25px;
+        }
+        
+        #customers td, #customers th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 10px;
+            text-align: left;
+            background-color: #18d26e;
+            color: white;
+        }
+        .serif {
+            font-family: "Times New Roman", Times, serif;
+        }
+        /* Above CSS is for TABLE and CSS below is for Forms */
+        * {
+        box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        }
+
+        label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+        }
+
+        input[type=submit] {
+        background-color: #18d26e;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        }
+
+        input[type=submit]:hover {
+        background-color: #18d26e;
+        }
+
+        .container {
+        border-radius: 5px;
+        background-color: white;
+        padding: 20px;
+        }
+
+        .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+        }
+
+        .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+        .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+        }
+
+        </style>
+    </head>
+    <body>
+      <!--NAVIGATION BAR STARTS-->
+      <div class="bs-example" style=" margin-top: 20px; margin-left: 10px; margin-right: 10px; ">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" style= "
+        background: #212529;
+        box-shadow:  2px 2px 10px #0e0f11, 
+                     -2px -2px 10px #343b41;">
+            <a href="#" class="navbar-brand"></a>         
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarCollapse" >
+                <div class="navbar-nav">
+                    <a href="http://127.0.0.1:8000" class="nav-item nav-link active">Home</a>
+                    <!--<a href="clone/" class="nav-item nav-link">Clone Attendence</a>-->
+                </div>
+            </div>
+        </nav>
+      </div>
+    <!--NAVIGATION BAR ENDS-->  
+    <form method="POST" action="#"> {% csrf_token %}
+      <!--TABLE STARTS-->   
+        <table style="border: 2px solid black;" , id = customers>
+            <tr>
+                <th style="width: 60%;"> NAMES</th><th style="width: 40%;">STATUS</th>
+            </tr>
+            {% for x in student %}
+            <tr>
+                <td>
+                    {{x.name | title}}
+                </td>
+                <td>
+                  <div class = 'radio'>
+                    <div>   
+                        <label>
+                            <input type="radio" id = '{{x.name}}' name = '{{x.id}}' value = 'P' required="required">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </label>
+                        <label>
+                            <input type="radio" id = '{{x.name}}' name = '{{x.id}}'  value= 'A' required="required">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </label>
+                    </div>    
+                </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+      <!--TABLE ENDS-->  
+      <!--FORM STARTS-->
+        <div class = 'container'>
+         <div class="row">
+            <div class="col-25">
+              <label for="date">Date</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="date" name="date" value = "{{date}}" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="day">Day</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="day" name="day" value = "{{day | title}}" readonly>
+              <input type="hidden" id="class" name="class_id" value="{{class_id}}">
+            </div>
+          </div>
+          
+         
+          <div class="row">
+            <div class="col-25">
+              <label for="country">Lecture Number</label>
+            </div>
+            <div class="col-75">
+              <select id="lecture_number" name="lecture_number">
+                <option value="lec1">Lecture 1</option>
+                <option value="lec2">Lecture 2</option>
+                <option value="lec3">Lecture 3</option>
+                <option value="lec4">Lecture 4</option>
+                <option value="lec5">Lecture 5</option>
+                <option value="lec6">Lecture 6</option>
+                <option value="lec7">Lecture 7</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <input style="margin-top: 20px;" type="submit" value="Submit">
+          </div>
+        </div>
+      <!--FORM ENDS-->  
+    </from>
+    </body>
+    </html>
+
